@@ -42,7 +42,7 @@ def clip_values(df, columns, lower, upper):
         df_clipped[columns[i]] = df_clipped[columns[i]].clip(lower = lower[i], upper = upper[i])
     return df_clipped
     
-def preprocessing(dataset, feature_names, target_column, cols_to_process, clipping):
+def dataset_preprocessing(dataset, feature_names, target_column, cols_to_process, clipping):
     
     X = dataset[feature_names]
     y = dataset[target_column]
@@ -66,7 +66,7 @@ def preprocessing(dataset, feature_names, target_column, cols_to_process, clippi
     X_train[cols_to_process] = 2 * ((X_train[cols_to_process] - minima) /
                                 (maxima - minima)) - 1
 
-    X_test[cols_to_process] = 2 * ((X_train[cols_to_process] - minima) /
+    X_test[cols_to_process] = 2 * ((X_test[cols_to_process] - minima) /
                                 (maxima - minima)) - 1
     X_test[cols_to_process]= X_test[cols_to_process].clip(lower=-1, upper=1)
 
